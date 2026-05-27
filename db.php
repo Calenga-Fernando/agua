@@ -1,0 +1,19 @@
+<?php
+$host     = getenv('MYSQL_HOST');
+$port     = getenv('MYSQL_PORT');
+$dbname   = getenv('MYSQL_DATABASE');
+$user     = getenv('MYSQL_USER');
+$password = getenv('MYSQL_PASSWORD');
+
+try {
+    $pdo = new PDO(
+        "mysql:host=$host;port=$port;dbname=$dbname;charset=utf8",
+        $user,
+        $password,
+        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+    );
+} catch (PDOException $e) {
+    http_response_code(500);
+    echo json_encode(['erro' => 'Falha na ligação à BD']);
+    exit;
+}
