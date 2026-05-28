@@ -3,7 +3,7 @@
     header ('Content-Type: application/json');
 
     //recepção dos dados pelo ESP32
-    $dados = json_encode(file_get_contents('php://input'), true);
+    $dados = json_decode(file_get_contents('php://input'), true);
 
     //validar os campos esperados
     if(!isset($dados['ph']) || !isset($dados['turbidez']) || !isset($dados['temperatura']) || !isset($dados['resultado'])){

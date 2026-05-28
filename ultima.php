@@ -8,10 +8,10 @@ error_reporting(E_ALL);
 
     try{
         $stmt = $pdo -> query("
-            SELECT id_medicao, registado_em, ph, turbidez, temperatura, resultado, latitude; longitude
+            SELECT id_medicao, registado_em, ph, turbidez, temperatura, resultado, latitude, longitude
             FROM medicao
             ORDER BY registado_em DESC
-            LIMIT1 
+            LIMIT 1 
         ");
 
         $ultima = $stmt->fetch(PDO::FETCH_ASSOC);
