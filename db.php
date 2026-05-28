@@ -19,6 +19,11 @@ $pdo = new PDO(
 );
 } catch (PDOException $e) {
     http_response_code(500);
-    echo json_encode(['erro' => 'Falha na ligação à BD']);
+
+    echo json_encode([
+        'erro' => $e->getMessage()
+    ]);
+
     exit;
+}
 }
