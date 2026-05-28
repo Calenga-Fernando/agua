@@ -32,16 +32,20 @@
         $stmt = $pdo -> prepare ("
             INSERT INTO medicao (ph, turbidez, temperatura, resultado, latitude, longitude)
             VALUES (?, ?, ?, ?, ?, ?)
+            RETURNING id_medicao
         ");
 
         $stmt -> execute([$ph, $turbidez, $temperatura, $resultado, $latitude, $longitude]);
 
+        $id = $stmt -> fetchColumn();
         echo json_encode(['status' => 'ok',
-                            'id' => $pdo -> lastInsertId()
+                            'id' => $id
         ]);
     } catch (PDOException $e) {
-        # code...
-        http_response_code (500);
-        echo json_encode(['erro' => 'Erro ao guardar medição']);
-    }
-?>
+
+    http_response_code(500);
+
+    echo json_encode([
+        'erro' => $e->getMessage()
+    ]);
+}
