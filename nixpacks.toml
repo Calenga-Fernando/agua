@@ -2,4 +2,6 @@
 nixPkgs = ["php82", "php82Extensions.pdo", "php82Extensions.pdo_mysql"]
 
 [start]
-cmd = "php -S 0.0.0.0:$PORT"
+cmd = "php -S 0.0.0.0:$PORT"git add nixpacks.toml
+git commit -m "Configura nixpacks com extensoes PDO"
+git push origin main
