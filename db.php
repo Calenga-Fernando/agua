@@ -26,4 +26,3 @@ $pdo = new PDO(
 
     exit;
 }
-}
