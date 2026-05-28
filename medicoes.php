@@ -14,6 +14,12 @@
 
         $medicoes = $stmt -> fetchAll(PDO::FETCH_ASSOC);
 
+        if (!$medicoes) {
+        http_response_code(404);
+        echo json_encode(['erro' => 'Não há medições para serem mostradas']);
+        exit;
+        }
+
         echo json_encode($medicoes);
     } catch (PDOException $e){
         http_response_code(500);
